@@ -23,7 +23,8 @@
     "next": "^15.2.3",
     "next-themes": "^0.4.4",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "framer-motion": "12.4.10"
   },
   "devDependencies": {
     "@types/node": "^20",
@@ -35,6 +36,5 @@
     "@svgr/webpack": "8.1.0",
     "@next/bundle-analyzer": "15.3.1",
     "typescript": "^5.7.3"
-  },
-  "prettier": "@workspace/prettier-config"
+  }
 }

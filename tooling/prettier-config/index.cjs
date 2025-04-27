@@ -12,6 +12,7 @@ const config = {
   bracketSpacing: true,
   arrowParens: 'always',
   singleAttributePerLine: true,
+  tailwindStylesheet: './packages/ui/src/styles/globals.css',
   importOrder: [
     '^(react/(.*)$)|^(react$)',
     '^(next/(.*)$)|^(next$)',
@@ -31,4 +32,4 @@ const config = {
   ]
 };
 
-export default config;
+module.exports = config;
