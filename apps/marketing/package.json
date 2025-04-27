@@ -14,27 +14,27 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@workspace/ui": "workspace:*",
+    "@t3-oss/env-nextjs": "0.13.0",
     "@workspace/common": "workspace:*",
     "@workspace/routes": "workspace:*",
-    "@t3-oss/env-nextjs": "0.13.0",
-    "next-secure-headers": "2.2.0",
+    "@workspace/ui": "workspace:*",
     "lucide-react": "^0.475.0",
+    "motion": "^12.9.2",
     "next": "^15.2.3",
+    "next-secure-headers": "2.2.0",
     "next-themes": "^0.4.4",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "framer-motion": "12.4.10"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "15.3.1",
+    "@svgr/webpack": "8.1.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@workspace/eslint-config": "workspace:*",
-    "@workspace/typescript-config": "workspace:*",
     "@workspace/prettier-config": "workspace:*",
-    "@svgr/webpack": "8.1.0",
-    "@next/bundle-analyzer": "15.3.1",
+    "@workspace/typescript-config": "workspace:*",
     "typescript": "^5.7.3"
   }
 }

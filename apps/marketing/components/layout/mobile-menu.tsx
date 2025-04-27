@@ -3,8 +3,8 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { motion } from 'framer-motion';
 import { ChevronDownIcon, ChevronUpIcon } from 'lucide-react';
+import { motion } from 'motion/react';
 
 import { baseUrl, getPathname, routes } from '@workspace/routes';
 import { Button, buttonVariants } from '@workspace/ui/components/button';

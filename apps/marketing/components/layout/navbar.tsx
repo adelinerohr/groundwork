@@ -20,6 +20,7 @@ import { cn } from '@workspace/ui/lib/utils';
 
 import { ExternalLink } from '../fragments/external-link';
 import { MENU_LINKS } from './marketing-links';
+import { MobileMenu } from './mobile-menu';
 
 export function NavBar(): React.JSX.Element {
   const pathname = usePathname();
@@ -158,6 +159,7 @@ export function NavBar(): React.JSX.Element {
             </Link>
           </div>
         </nav>
+        <MobileMenu className="lg:hidden" />
       </div>
     </section>
   );
