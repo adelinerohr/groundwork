@@ -1,0 +1,52 @@
+import * as React from "react";
+
+import { APP_NAME } from "@workspace/common/app";
+import { cn } from "@workspace/ui/lib/utils";
+
+interface LogoProps extends React.HTMLAttributes<HTMLDivElement> {
+  hideSymbol?: boolean;
+  hideWordmark?: boolean;
+}
+
+export function Logo({
+  hideSymbol,
+  hideWordmark,
+  className,
+  ...props
+}: LogoProps) {
+  return (
+    <div className={cn("flex items-center space-x-2", className)} {...props}>
+      {!hideSymbol && (
+        <svg
+          width="28"
+          height="32"
+          viewBox="0 0 28 32"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M13.7912 0L0 8.08081L13.7912 16.0539L27.6902 8.08081L13.7912 0Z"
+            fill="#39D059"
+          />
+          <path
+            d="M13.7912 16.0539L0 8.08081V16L13.7912 24.0269V16.0539Z"
+            fill="#39D059"
+          />
+          <path
+            d="M27.6902 8.08081L13.7912 16.0539V24.0269L27.6902 16V8.08081Z"
+            fill="#129223"
+          />
+          <path
+            d="M0 23.9192L13.7912 32V24.0269L0 16V23.9192Z"
+            fill="#74621B"
+          />
+          <path
+            d="M13.7912 32L27.6902 23.9192V16L13.7912 24.0269V32Z"
+            fill="#524611"
+          />
+        </svg>
+      )}
+      {!hideWordmark && <span className="font-bold">{APP_NAME}</span>}
+    </div>
+  );
+}

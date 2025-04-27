@@ -1,18 +1,24 @@
 {
-  "name": "web",
+  "name": "marketing",
   "version": "0.0.1",
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev --port 3001 --turbopack",
     "build": "next build",
     "start": "next start",
+    "format": "prettier --check \"**/*.{js,cjs,mjs,ts,tsx,mdx}\"",
+    "format:fix": "prettier --write \"**/*.{js,cjs,mjs,ts,tsx,mdx}\"",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@workspace/ui": "workspace:*",
+    "@workspace/common": "workspace:*",
+    "@workspace/routes": "workspace:*",
+    "@t3-oss/env-nextjs": "0.13.0",
+    "next-secure-headers": "2.2.0",
     "lucide-react": "^0.475.0",
     "next": "^15.2.3",
     "next-themes": "^0.4.4",
@@ -23,8 +29,12 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@workspace/eslint-config": "workspace:^",
+    "@workspace/eslint-config": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
+    "@workspace/prettier-config": "workspace:*",
+    "@svgr/webpack": "8.1.0",
+    "@next/bundle-analyzer": "15.3.1",
     "typescript": "^5.7.3"
-  }
+  },
+  "prettier": "@workspace/prettier-config"
 }
