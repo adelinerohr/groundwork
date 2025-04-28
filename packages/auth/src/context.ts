@@ -13,7 +13,7 @@ const dedupedGetUserInfo = cache(async function (userId: string) {
       `
       name,
       phone,
-      avatar_url,
+      image,
       completed_onboarding,
       email,
       memberships (

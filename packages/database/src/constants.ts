@@ -1,3 +1,5 @@
+import { type SupabaseClient } from "@supabase/supabase-js";
+
 export enum Role {
   MEMBER = "member",
   ADMIN = "admin",
@@ -8,3 +10,5 @@ export enum InvitationStatus {
   ACCEPTED = "accepted",
   REVOKED = "revoked",
 }
+
+export { SupabaseClient };

@@ -19,7 +19,6 @@ export const signUp = actionClient
       .select("*", { count: "exact", head: true })
       .eq("email", normalizedEmail);
 
-    console.log(countError);
     if (countError) throw countError;
 
     if (count! > 0) {
@@ -37,8 +36,6 @@ export const signUp = actionClient
         },
       },
     });
-
-    console.log(error);
 
     if (error) {
       return returnValidationErrors(signUpSchema, {

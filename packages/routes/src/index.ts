@@ -96,6 +96,34 @@ export const routes = {
   }
 } as const;
 
+type ExtractSlugRoutes<T> =
+  T extends Record<string, unknown>
+    ? {
+        [K in keyof T]: T[K] extends string
+          ? T[K] extends `${string}[slug]${string}`
+            ? T[K]
+            : never
+          : ExtractSlugRoutes<T[K]>;
+      }[keyof T]
+    : never;
+
+type OrganizationsSlugRoutes = ExtractSlugRoutes<
+  typeof routes.dashboard.organizations.slug
+>;
+
+export function replaceOrgSlug(
+  route: OrganizationsSlugRoutes,
+  slug: string
+): string {
+  if (route.indexOf('[slug]') === -1) {
+    throw new Error(
+      `Invalid route: ${route}. Route must contain the placeholder [slug].`
+    );
+  }
+
+  return route.replace('[slug]', slug);
+}
+
 export function getPathname(route: string, baseUrl: string): string {
   return new URL(route, baseUrl).pathname;
 }
