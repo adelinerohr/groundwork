@@ -26,7 +26,7 @@ import {
 } from '@workspace/ui/components/tabs';
 import { cn } from '@workspace/ui/lib/utils';
 
-import { GridSection } from '../fragments/grid-section';
+import { GridSection } from '~/components/fragments/grid-section';
 
 function HeroPill() {
   return (

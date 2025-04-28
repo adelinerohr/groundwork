@@ -2,7 +2,7 @@
 // - Everything lowercase is an object
 // - Everything uppercase is a string (the route)
 
-import { keys } from '../keys.js';
+import { keys } from "../keys";
 
 export const baseUrl = {
   Dashboard: keys().NEXT_PUBLIC_DASHBOARD_URL,

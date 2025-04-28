@@ -134,3 +134,13 @@
     max-width: 1400px;
   }
 }
+
+@utility bg-diagonal-lines {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--background),
+    var(--border) 1px,
+    var(--background) 1px,
+    var(--background) 8px
+  );
+}

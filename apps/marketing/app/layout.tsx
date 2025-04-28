@@ -3,12 +3,12 @@ import '@workspace/ui/globals.css';
 import * as React from 'react';
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
-import { NavBar } from '@/components/layout/navbar';
 
 import { APP_DESCRIPTION, APP_NAME } from '@workspace/common/app';
 import { baseUrl } from '@workspace/routes';
 import { Toaster } from '@workspace/ui/components/sonner';
 
+import { NavBar } from '~/components/layout/navbar';
 import { Providers } from './providers';
 
 export const viewport: Viewport = {

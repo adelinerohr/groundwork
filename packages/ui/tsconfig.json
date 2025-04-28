@@ -7,5 +7,5 @@
     }
   },
   "include": ["."],
-  "exclude": ["node_modules", "dist"]
+  "exclude": [".cache", ".turbo", "build", "dist", "node_modules"]
 }
