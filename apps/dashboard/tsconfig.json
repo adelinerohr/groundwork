@@ -3,7 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"],
+      "~/*": ["./*"],
       "@workspace/ui/*": ["../../packages/ui/src/*"]
     },
     "plugins": [
@@ -14,9 +14,11 @@
   },
   "include": [
     "next-env.d.ts",
-    "next.config.ts",
+    "next-page.d.ts",
+    "next-params.d.ts",
     "**/*.ts",
     "**/*.tsx",
+    "*.mjs",
     ".next/types/**/*.ts"
   ],
   "exclude": ["node_modules"]

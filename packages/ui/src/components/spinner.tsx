@@ -1,0 +1,62 @@
+import { cva, VariantProps } from "class-variance-authority";
+import { Loader2Icon } from "lucide-react";
+import { cn } from "../lib/utils";
+
+const spinnerVariants = cva("flex-col items-center justify-center", {
+  variants: {
+    show: {
+      true: "flex",
+      false: "hidden",
+    },
+  },
+  defaultVariants: {
+    show: true,
+  },
+});
+
+const loaderVariants = cva("animate-spin text-primary", {
+  variants: {
+    size: {
+      small: "size-6 shrink-0",
+      medium: "size-8 shrink-0",
+      large: "size-12 shrink-0",
+    },
+  },
+  defaultVariants: {
+    size: "medium",
+  },
+});
+
+type SpinnerProps = VariantProps<typeof spinnerVariants> &
+  VariantProps<typeof loaderVariants> & {
+    className?: string;
+    children?: React.ReactNode;
+  };
+function Spinner({ size, show, children, className }: SpinnerProps) {
+  return (
+    <span className={spinnerVariants({ show })}>
+      <Loader2Icon className={cn(loaderVariants({ size }), className)} />
+      {children}
+    </span>
+  );
+}
+
+function CenteredSpinner({
+  containerClassName,
+  ...props
+}: SpinnerProps & {
+  containerClassName?: React.HTMLAttributes<HTMLDivElement>["className"];
+}) {
+  return (
+    <div
+      className={cn(
+        "pointer-events-none absolute inset-0 flex select-none items-center justify-center opacity-65",
+        containerClassName
+      )}
+    >
+      <Spinner {...props} />
+    </div>
+  );
+}
+
+export { Spinner, CenteredSpinner };

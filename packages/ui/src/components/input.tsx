@@ -1,6 +1,8 @@
-import * as React from "react"
+import * as React from "react";
 
-import { cn } from "@workspace/ui/lib/utils"
+import { cn } from "@workspace/ui/lib/utils";
+import { Button } from "./button";
+import { EyeIcon, EyeOffIcon } from "lucide-react";
 
 function Input({ className, type, ...props }: React.ComponentProps<"input">) {
   return (
@@ -15,7 +17,86 @@ function Input({ className, type, ...props }: React.ComponentProps<"input">) {
       )}
       {...props}
     />
-  )
+  );
 }
 
-export { Input }
+type InputWithAdornmentsProps = React.ComponentProps<"input"> & {
+  startAdornment?: React.JSX.Element;
+  endAdornment?: React.JSX.Element;
+  containerClassName?: string;
+};
+function InputWithAdornments({
+  className,
+  startAdornment,
+  endAdornment,
+  containerClassName,
+  ...props
+}: InputWithAdornmentsProps) {
+  return (
+    <div className={cn("relative inline-block h-9 w-full", containerClassName)}>
+      {startAdornment && (
+        <span className="absolute left-3 top-1/2 flex -translate-y-1/2 text-muted-foreground">
+          {startAdornment}
+        </span>
+      )}
+      <input
+        className={cn(
+          "flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50",
+          startAdornment && endAdornment
+            ? "px-10"
+            : startAdornment
+              ? "pl-10 pr-4"
+              : endAdornment
+                ? "pl-4 pr-10"
+                : "",
+          className
+        )}
+        {...props}
+      />
+      {endAdornment && (
+        <span className="absolute left-auto right-3 top-1/2 flex -translate-y-1/2 text-muted-foreground">
+          {endAdornment}
+        </span>
+      )}
+    </div>
+  );
+}
+
+function InputPassword(props: InputWithAdornmentsProps) {
+  const [showPassword, setShowPassword] = React.useState<boolean>(false);
+
+  const handleClickShowPassword = (): void => {
+    setShowPassword((prev) => !prev);
+  };
+
+  const handleMouseDownPassword = (event: React.SyntheticEvent): void => {
+    event.preventDefault();
+  };
+
+  return (
+    <InputWithAdornments
+      type={showPassword ? "text" : "password"}
+      endAdornment={
+        <Button
+          type="button"
+          variant="ghost"
+          size="icon"
+          aria-label="Toggle password visibility"
+          className="-mr-2.5 size-8"
+          onClick={handleClickShowPassword}
+          onMouseDown={handleMouseDownPassword}
+          disabled={props.disabled}
+        >
+          {showPassword ? (
+            <EyeOffIcon className="size-4 shrink-0" />
+          ) : (
+            <EyeIcon className="size-4 shrink-0" />
+          )}
+        </Button>
+      }
+      {...props}
+    />
+  );
+}
+
+export { Input, InputWithAdornments, InputPassword };
