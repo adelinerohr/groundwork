@@ -11,36 +11,40 @@ import { GridSection } from '~/components/fragments/grid-section';
 import { SiteHeading } from '~/components/fragments/site-heading';
 
 enum Feature {
-  AICustomerScoring = 'AI Contact Scoring',
-  SmartEmailAnalysis = 'Smart Email Analysis',
-  TeamSeats = 'Team Seats',
-  LeadPredictions = 'Lead Predictions',
-  SentimentAnalysis = 'Sentiment Analysis',
-  DataStorage = 'Data Storage',
-  EnterpriseSupport = 'Enterprise Support'
+  CRM = 'CRM',
+  JobScheduling = 'Job Scheduling',
+  EstimatesInvoices = 'Estimates & Invoices',
+  AccountingIntegration = 'Accounting Integration',
+  EmployeeAccounts = 'Employee Accounts',
+  ClientPortal = 'Client Portal',
+  MarketingIntegrations = 'Marketing Integrations',
+  RouteMapping = 'Route Mapping',
+  ESignContracts = 'E-Signing'
 }
 
 const plans = {
   free: {
-    [Feature.AICustomerScoring]: '100 contacts/mo',
-    [Feature.SmartEmailAnalysis]: '1,000 emails/mo',
-    [Feature.TeamSeats]: 'Up to 2'
+    [Feature.CRM]: '',
+    [Feature.JobScheduling]: 'Schedule jobs & appointments',
+    [Feature.EstimatesInvoices]: 'Send estimates and invoices'
   },
   pro: {
-    [Feature.AICustomerScoring]: 'Unlimited contacts',
-    [Feature.SmartEmailAnalysis]: 'Unlimited emails',
-    [Feature.LeadPredictions]: 'Advanced AI models',
-    [Feature.SentimentAnalysis]: 'Real-time & Advanced',
-    [Feature.TeamSeats]: 'Up to 120'
+    [Feature.CRM]: '',
+    [Feature.JobScheduling]: 'Schedule jobs & appointments',
+    [Feature.EstimatesInvoices]: 'Send estimates and invoices',
+    [Feature.AccountingIntegration]: 'Integrate with Quickbooks or Xero',
+    [Feature.EmployeeAccounts]: 'Add employees and delegate jobs'
   },
   enterprise: {
-    [Feature.AICustomerScoring]: 'Custom volume & features',
-    [Feature.SmartEmailAnalysis]: 'Unlimited emails',
-    [Feature.LeadPredictions]: 'Custom AI models',
-    [Feature.SentimentAnalysis]: 'Real-time & Advanced',
-    [Feature.TeamSeats]: 'Unlimited',
-    [Feature.DataStorage]: 'Custom storage',
-    [Feature.EnterpriseSupport]: '24/7 support & tailored solutions'
+    [Feature.CRM]: '',
+    [Feature.JobScheduling]: 'Schedule jobs & appointments',
+    [Feature.EstimatesInvoices]: 'Send estimates and invoices',
+    [Feature.AccountingIntegration]: 'Integrate with Quickbooks or Xero',
+    [Feature.EmployeeAccounts]: 'Add employees and delegate jobs',
+    [Feature.ClientPortal]: 'Clients can view appointments and pay',
+    [Feature.MarketingIntegrations]: 'Integrate with MailChimp or Klaviyo',
+    [Feature.RouteMapping]: 'Optimize travel',
+    [Feature.ESignContracts]: 'E-Sign contracts'
   }
 } as const;
 
