@@ -32,6 +32,7 @@ import { MAX_IMAGE_SIZE } from "~/lib/file-upload";
 import { type CompleteOnboardingSchema } from "~/schemas/onboarding/complete-onboarding-schema";
 import { CropPhotoModal } from "~/components/common/modals/profile/crop-photo-modal";
 import { createClient } from "@workspace/database/client";
+import { baseUrl, getPathname, routes } from "@workspace/routes";
 
 function slugify(str: string): string {
   return str.replace(/[^a-zA-Z0-9-]/g, "-").toLowerCase();
@@ -209,7 +210,13 @@ export function OnboardingOrganizationStep({
                 // onChange={handleSlugChange}
               />
             </FormControl>
-            <FormDescription className="break-all">/{slug}</FormDescription>
+            <FormDescription className="break-all">
+              {getPathname(
+                routes.dashboard.organizations.Index,
+                baseUrl.Dashboard
+              )}
+              /{slug}
+            </FormDescription>
             <FormMessage />
           </FormItem>
         )}
