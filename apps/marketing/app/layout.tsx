@@ -8,6 +8,7 @@ import { APP_DESCRIPTION, APP_NAME } from '@workspace/common/app';
 import { baseUrl } from '@workspace/routes';
 import { Toaster } from '@workspace/ui/components/sonner';
 
+import { Footer } from '~/components/layout/footer';
 import { NavBar } from '~/components/layout/navbar';
 import { Providers } from './providers';
 
@@ -69,6 +70,7 @@ export default async function RootLayout({
           <div>
             <NavBar />
             {children}
+            <Footer />
           </div>
         </Providers>
         <React.Suspense>

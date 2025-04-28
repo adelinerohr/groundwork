@@ -129,10 +129,6 @@
 @utility container {
   padding-inline: 2rem;
   margin-inline: auto;
-
-  @variant 2xl {
-    max-width: 1400px;
-  }
 }
 
 @utility bg-diagonal-lines {
