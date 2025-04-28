@@ -1,6 +1,7 @@
-import type { NextConfig } from "next";
-import { createSecureHeaders } from "next-secure-headers";
+import type { NextConfig } from 'next';
+import { withContentCollections } from '@content-collections/next';
 import withBundleAnalyzer from '@next/bundle-analyzer';
+import { createSecureHeaders } from 'next-secure-headers';
 
 const INTERNAL_PACKAGES = ['@workspace/common', '@workspace/ui'];
 
@@ -20,7 +21,7 @@ const svgLoader = {
       ]
     }
   }
-}
+};
 
 const nextConfig: NextConfig = {
   // Enable hot reloading for local packages without a build step
@@ -79,19 +80,19 @@ const nextConfig: NextConfig = {
           referrerPolicy: 'same-origin'
         })
       }
-    ]
+    ];
   },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/i,
       use: [svgLoader]
     });
-    return config
+    return config;
   }
 };
 
 const bundleAnalyzerConfig = withBundleAnalyzer({
   enabled: process.env.BUNDLE_ANALYZER === 'true'
-})
+});
 
-export default bundleAnalyzerConfig(nextConfig);
+export default withContentCollections(bundleAnalyzerConfig(nextConfig));
