@@ -14,10 +14,15 @@ import {
   createInvitation,
   sendInvitationRequest,
 } from "@workspace/auth/invitations";
+import {
+  addOrganizationToStripe,
+  updateOrganizationSubscriptionQuantity,
+} from "@workspace/billing/organization";
 import { revalidateTag } from "next/cache";
 import { Caching, OrganizationCacheKey, UserCacheKey } from "~/data/caching";
 import { replaceOrgSlug, routes } from "@workspace/routes";
 import { createClient } from "@workspace/database/server";
+import { Tier } from "@workspace/billing/tier";
 
 export const completeOnboarding = authActionClient
   .metadata({ actionName: "completeOnboarding" })
@@ -40,6 +45,7 @@ export const completeOnboarding = authActionClient
       await handleOrganizationStep(
         parsedInput.organizationStep,
         userId,
+        userEmail,
         organizationId,
         supabase
       );
@@ -85,6 +91,14 @@ export const completeOnboarding = authActionClient
     if (membershipsError) throw membershipsError;
 
     for (const membership of memberships) {
+      try {
+        await updateOrganizationSubscriptionQuantity(
+          (membership.organizations as any).id
+        );
+      } catch (e) {
+        console.error(e);
+      }
+
       revalidateTag(
         Caching.createOrganizationTag(
           OrganizationCacheKey.Members,
@@ -147,10 +161,22 @@ async function handleProfileStep(
 async function handleOrganizationStep(
   step: CompleteOnboardingSchema["organizationStep"],
   userId: string,
+  userEmail: string,
   organizationId: string,
   supabase: SupabaseClient
 ) {
   if (!step) return;
+
+  let stripeCustomerId = "";
+  try {
+    stripeCustomerId = await addOrganizationToStripe(
+      step.name,
+      userEmail,
+      organizationId
+    );
+  } catch {
+    console.warn("Stripe customer Id is missing");
+  }
 
   console.log("Adding organization...");
   const { error: organizationError } = await supabase
@@ -160,6 +186,8 @@ async function handleOrganizationStep(
         id: organizationId,
         name: step.name,
         slug: step.slug,
+        stripe_customer_id: stripeCustomerId,
+        tier: Tier.Free,
       },
     ]);
 
