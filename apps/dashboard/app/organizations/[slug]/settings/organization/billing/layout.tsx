@@ -51,6 +51,8 @@ export default async function BillingLayout({
         <AnnotatedLayout>
           {subscriptionPlan}
           <Separator />
+          {billingBreakdown}
+          <Separator />
           {billingEmail}
           <Separator />
           {billingAddress}
