@@ -18,6 +18,8 @@ const dedupedGetActiveOrganization = cache(async function (
       logo,
       name,
       slug,
+      tier,
+      stripe_customer_id,
       memberships (user_id)
     `
     )

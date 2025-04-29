@@ -1,5 +1,3 @@
-'use server';
-
 import Stripe from 'stripe';
 
 import { keys } from '../keys';
