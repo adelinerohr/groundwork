@@ -50,6 +50,9 @@ importers:
       '@workspace/database':
         specifier: workspace:*
         version: link:../../packages/database
+      '@workspace/email':
+        specifier: workspace:*
+        version: link:../../packages/email
       '@workspace/monitoring':
         specifier: workspace:*
         version: link:../../packages/monitoring
@@ -12376,7 +12379,7 @@ snapshots:
 
   jest-worker@27.5.1:
     dependencies:
-      '@types/node': 22.13.9
+      '@types/node': 22.15.3
       merge-stream: 2.0.0
       supports-color: 8.1.1
 

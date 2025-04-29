@@ -29,6 +29,7 @@
     "./context": "./src/context.ts",
     "./password": "./src/password.ts",
     "./constants": "./src/constants.ts",
-    "./invitations": "./src/invitations.ts"
+    "./invitations": "./src/invitations.ts",
+    "./permissions": "./src/permissions.ts"
   }
 }

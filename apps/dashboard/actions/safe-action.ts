@@ -4,7 +4,10 @@ import {
 } from "next-safe-action";
 import { z } from "zod";
 
-import { getAuthContext } from "@workspace/auth/context";
+import {
+  getAuthContext,
+  getAuthOrganizationContext,
+} from "@workspace/auth/context";
 import {
   ForbiddenError,
   GatewayError,
@@ -39,3 +42,10 @@ export const authActionClient = actionClient.use(async ({ next }) => {
 
   return next({ ctx });
 });
+
+export const authOrganizationActionClient = actionClient.use(
+  async ({ next }) => {
+    const ctx = await getAuthOrganizationContext();
+    return next({ ctx });
+  }
+);
