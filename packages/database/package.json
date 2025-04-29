@@ -10,9 +10,13 @@
     "next": "^15.2.3",
     "zod": "^3.24.3"
   },
+  "devDependencies": {
+    "@types/node": "^22.15.3"
+  },
   "exports": {
     "./client": "./src/client.ts",
     "./server": "./src/server.ts",
-    "./constants": "./src/constants.ts"
+    "./constants": "./src/constants.ts",
+    "./admin": "./src/admin.ts"
   }
 }
