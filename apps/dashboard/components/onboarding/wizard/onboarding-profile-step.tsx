@@ -30,6 +30,7 @@ import { FileUploadAction, MAX_IMAGE_SIZE } from "~/lib/file-upload";
 import { getInitials } from "~/lib/formatters";
 import { type CompleteOnboardingSchema } from "~/schemas/onboarding/complete-onboarding-schema";
 import { CropPhotoModal } from "~/components/common/modals/profile/crop-photo-modal";
+import { createClient } from "@workspace/database/client";
 
 export type OnboardingProfileStepProps =
   React.HtmlHTMLAttributes<HTMLDivElement> & OnboardingStepProps;
@@ -43,12 +44,17 @@ export function OnboardingProfileStep({
   ...other
 }: OnboardingProfileStepProps): React.JSX.Element {
   const methods = useFormContext<CompleteOnboardingSchema>();
+  const supabase = createClient();
+  const [imagePath, setImagePath] = React.useState<string | null>(null);
+
   const image = methods.watch("profileStep.image");
   const name = methods.watch("profileStep.name");
   const email = methods.watch("profileStep.email");
+
   const handleDrop = async (files: File[]): Promise<void> => {
     if (files && files.length > 0) {
       const file = files[0];
+
       if (file.size > MAX_IMAGE_SIZE) {
         toast.error(
           `Uploaded image shouldn't exceed ${MAX_IMAGE_SIZE / 1000000} MB size limit`
@@ -59,9 +65,24 @@ export function OnboardingProfileStep({
           aspectRatio: 1,
           circularCrop: true,
         });
+
         if (base64Image) {
-          methods.setValue("profileStep.action", FileUploadAction.Update);
-          methods.setValue("profileStep.image", base64Image, {
+          const fileExt = file.name.split(".").pop();
+          const filePath = `${Math.random()}.${fileExt}`;
+
+          const { error: uploadError } = await supabase.storage
+            .from("avatars")
+            .upload(filePath, file);
+
+          if (uploadError) throw uploadError;
+
+          const {
+            data: { publicUrl },
+          } = supabase.storage.from("avatars").getPublicUrl(filePath);
+
+          setImagePath(filePath);
+
+          methods.setValue("profileStep.image", publicUrl, {
             shouldValidate: true,
             shouldDirty: true,
           });
@@ -69,8 +90,18 @@ export function OnboardingProfileStep({
       }
     }
   };
-  const handleRemoveImage = (): void => {
-    methods.setValue("profileStep.action", FileUploadAction.Delete);
+
+  const handleRemoveImage = async (): Promise<void> => {
+    if (imagePath === null) return;
+
+    const { error } = await supabase.storage
+      .from("avatars")
+      .remove([imagePath]);
+
+    if (error) throw error;
+
+    setImagePath(null);
+
     methods.setValue("profileStep.image", undefined, {
       shouldValidate: true,
       shouldDirty: true,

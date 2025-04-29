@@ -1,0 +1,23 @@
+import * as React from "react";
+import { UsersIcon } from "lucide-react";
+
+import { EmptyState } from "@workspace/ui/components/empty";
+import { AddContactButton } from "../helpers/add-contact-button";
+
+export function ContactsEmptyState(): React.JSX.Element {
+  return (
+    <div className="p-6">
+      <EmptyState
+        icon={
+          <div className="flex size-12 items-center justify-center rounded-md border">
+            <UsersIcon className="size-6 shrink-0 text-muted-foreground" />
+          </div>
+        }
+        title="No contacts yet"
+        description="Add contacts and they will show up here."
+      >
+        <AddContactButton />
+      </EmptyState>
+    </div>
+  );
+}

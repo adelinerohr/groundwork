@@ -11,4 +11,11 @@ export enum InvitationStatus {
   REVOKED = "revoked",
 }
 
+export enum ContactStage {
+  POTENTIAL = "potential",
+  ACTIVE = "active",
+  PAST = "past",
+  DEAD = "dead",
+}
+
 export { SupabaseClient };

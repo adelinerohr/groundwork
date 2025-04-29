@@ -4,6 +4,7 @@ import * as React from "react";
 import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area";
 
 import { cn } from "@workspace/ui/lib/utils";
+import { useMediaQuery, UseMediaQueryOptions } from "../hooks/use-media-query";
 
 function ScrollArea({
   verticalScrollBar = true,
@@ -54,4 +55,26 @@ function ScrollBar({
   );
 }
 
-export { ScrollArea, ScrollBar };
+function ResponsiveScrollArea({
+  breakpoint,
+  mediaQueryOptions,
+  children,
+  fallbackProps,
+  ...scrollAreaProps
+}: React.ComponentProps<typeof ScrollAreaPrimitive.Root> & {
+  verticalScrollBar?: boolean;
+  horizontalScrollBar?: boolean;
+  breakpoint: string;
+  mediaQueryOptions?: UseMediaQueryOptions;
+  fallbackProps?: React.HTMLAttributes<HTMLDivElement>;
+}) {
+  const isBreakpointMatched = useMediaQuery(breakpoint, mediaQueryOptions);
+
+  if (isBreakpointMatched) {
+    return <ScrollArea {...scrollAreaProps}>{children}</ScrollArea>;
+  }
+
+  return <div {...fallbackProps}>{children}</div>;
+}
+
+export { ScrollArea, ScrollBar, ResponsiveScrollArea };
