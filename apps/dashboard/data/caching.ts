@@ -12,7 +12,7 @@ export enum UserCacheKey {
 
 export enum OrganizationCacheKey {
   OrganizationLogo,
-  LeadGenerationData,
+  ClientData,
   Contacts,
   ContactTags,
   Contact,

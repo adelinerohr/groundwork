@@ -18,4 +18,20 @@ export enum ContactStage {
   DEAD = "dead",
 }
 
+export enum RecurrenceFrequency {
+  DAILY = "daily",
+  WEEKLY = "weekly",
+  MONTHLY = "monthly",
+}
+
+export enum Weekday {
+  MONDAY = "Monday",
+  TUESDAY = "Tuesday",
+  WEDNESDAY = "Wednesday",
+  THURSDAY = "Thursday",
+  FRIDAY = "Friday",
+  SATURDAY = "Saturday",
+  SUNDAY = "Sunday",
+}
+
 export { SupabaseClient };

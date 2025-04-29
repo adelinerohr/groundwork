@@ -24,15 +24,11 @@ export const metadata: Metadata = {
 };
 
 export type HomeLayoutProps = {
-  leadGeneration: React.ReactNode;
-  mostVisitedContacts: React.ReactNode;
-  leastVisitedContacts: React.ReactNode;
+  statistics: React.ReactNode;
 };
 
 export default function HomeLayout({
-  leadGeneration,
-  mostVisitedContacts,
-  leastVisitedContacts,
+  statistics,
 }: HomeLayoutProps): React.JSX.Element {
   return (
     <TransitionProvider>
@@ -60,11 +56,7 @@ export default function HomeLayout({
         </PageHeader>
         <PageBody>
           <div className="mx-auto max-w-6xl space-y-2 p-2 sm:space-y-8 sm:p-6">
-            {leadGeneration}
-            <div className="grid grid-cols-1 gap-2 sm:gap-8 md:grid-cols-2">
-              {mostVisitedContacts}
-              {leastVisitedContacts}
-            </div>
+            {statistics}
           </div>
           <HomeSpinner />
         </PageBody>
